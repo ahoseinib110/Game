@@ -43,24 +43,13 @@ public class FourInARow {
     }
 
     public boolean checkIsAddable(int x, int y) {
-        if (!isGameFinished()) {
-            if (x <mRowSize && x >= 0 &&y < mRowSize && y >= 0) {
-                if (plate[x][y].equals(ButtonColor.GRAY)) {
-                    return true;
-                } else {
-                    Log.d("bashir", "this position is not empty !");
-                    return false;
-                    //System.out.println("this position is not empty !");
-                }
-            } else {
-                Log.d("bashir", "out of range input!");
-                return false;
-                //System.out.println("out of range input!");
-            }
-        }else {
-            return false;
-        }
-    }
+        boolean condition1 = !isGameFinished();
+        boolean condition2 = x <mRowSize && x >= 0 &&y < mRowSize && y >= 0;
+        boolean condition3 = plate[x][y].equals(ButtonColor.GRAY);
+        boolean condition4 = (x==0)  || ((x>0)&&(!plate[x-1][y].equals(ButtonColor.GRAY)));
+        boolean result = condition1 && condition2 && condition3 && condition4;
+        return result;
+     }
 
     public void changePlate(int x, int y, ButtonColor ButtonColor) {
         filled++;
