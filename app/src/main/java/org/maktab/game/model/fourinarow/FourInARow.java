@@ -81,11 +81,69 @@ public class FourInARow {
                     for (int k = j; k <j+3 ; k++) {
                         if (!plate[i][k].equals(plate[i][k+1])) {
                             flag = false;
+                            break;
                         }
                     }
                     if (flag) {
                             printStatusColor(plate[i][j]);
                             return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i <mRowSize ; i++) {
+            for (int j = 0; j < 2; j++) {
+                //horizontal
+                if (!plate[j][i].equals(ButtonColor.GRAY)) {
+                    boolean flag =true;
+                    for (int k = j; k <j+3 ; k++) {
+                        if (!plate[k][i].equals(plate[k+1][i])) {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if (flag) {
+                        printStatusColor(plate[j][i]);
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i <2 ; i++) {
+            for (int j = 0; j < 2; j++) {
+                //horizontal
+                if (!plate[i][j].equals(ButtonColor.GRAY)) {
+                    boolean flag =true;
+                    for (int k = 0; k <3 ; k++) {
+                            if (!plate[i+k][j+k].equals(plate[i+k+1][j+k+1])) {
+                                flag = false;
+                                break;
+                            }
+                    }
+                    if (flag) {
+                        printStatusColor(plate[i][j]);
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = mRowSize-1; i >mRowSize-2 ; i--) {
+            for (int j = mRowSize-1; j >mRowSize-2 ; j--) {
+                //horizontal
+                if (!plate[i][j].equals(ButtonColor.GRAY)) {
+                    boolean flag =true;
+                    for (int k = 0; k <3 ; k++) {
+                            if (!plate[i-k][j-k].equals(plate[i-k-1][j-k-1])) {
+                                flag = false;
+                                break;
+                            }
+                    }
+                    if (flag) {
+                        printStatusColor(plate[i][j]);
+                        return;
                     }
                 }
             }
