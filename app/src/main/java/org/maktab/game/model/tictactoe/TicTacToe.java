@@ -5,11 +5,21 @@ import android.util.Log;
 import org.maktab.game.model.tictactoe.Sign;
 import org.maktab.game.model.tictactoe.Status;
 
-public class TicTacToe {
+import java.io.Serializable;
+
+public class TicTacToe implements Serializable {
     private Sign[][] plate = new Sign[3][3];
     private Sign turn = Sign.X;
     private Status status ;
     private int filled = 0;
+
+    public Sign[][] getPlate() {
+        return plate;
+    }
+
+    public void setPlate(Sign[][] plate) {
+        this.plate = plate;
+    }
 
     public Status getStatus() {
         return status;

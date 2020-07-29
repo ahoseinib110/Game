@@ -1,7 +1,9 @@
 package org.maktab.game.controller.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.maktab.game.R;
+import org.maktab.game.model.fourinarow.ButtonColor;
 import org.maktab.game.model.tictactoe.Sign;
 import org.maktab.game.model.tictactoe.Status;
 import org.maktab.game.model.tictactoe.TicTacToe;
@@ -25,16 +28,9 @@ import org.maktab.game.model.tictactoe.TicTacToe;
 public class TicTacToeFragment extends Fragment {
 
     public static final String TAG = "bashir";
+    private static final String ARG_TIC_TAC_TOE = "tacTacToe";
     TicTacToe mTicTacToe;
-    Button mButtonT1;
-    Button mButtonT2;
-    Button mButtonT3;
-    Button mButtonT4;
-    Button mButtonT5;
-    Button mButtonT6;
-    Button mButtonT7;
-    Button mButtonT8;
-    Button mButtonT9;
+    Button[][] mButtons;
     View mFrametLayoutTic;
 
     public TicTacToeFragment() {
@@ -58,9 +54,10 @@ public class TicTacToeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (savedInstanceState == null) {
+            mTicTacToe = new TicTacToe();
         }
-        mTicTacToe = new TicTacToe();
+        mButtons = new Button[3][3];
     }
 
 
@@ -71,20 +68,47 @@ public class TicTacToeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tic_tac_toe, container, false);
         findViews(view);
         setOnClickListeners();
+        if (savedInstanceState != null) {
+            mTicTacToe = (TicTacToe) savedInstanceState.getSerializable(ARG_TIC_TAC_TOE);
+            Sign[][] plate = mTicTacToe.getPlate();
+            for (int i = 0; i <3 ; i++) {
+                for (int j = 0; j <3 ; j++) {
+                    fillButtons(mButtons[i][j],plate[i][j]);
+                }
+            }
+        }
         return view;
     }
 
+    private void fillButtons(Button button,Sign turn) {
+        switch (turn) {
+            case X:
+                button.setText("X");
+                break;
+            case O:
+                button.setText("O");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(ARG_TIC_TAC_TOE, mTicTacToe);
+    }
 
     private void findViews(View view) {
-        mButtonT1 = view.findViewById(R.id.button_t1);
-        mButtonT2 = view.findViewById(R.id.button_t2);
-        mButtonT3 = view.findViewById(R.id.button_t3);
-        mButtonT4 = view.findViewById(R.id.button_t4);
-        mButtonT5 = view.findViewById(R.id.button_t5);
-        mButtonT6 = view.findViewById(R.id.button_t6);
-        mButtonT7 = view.findViewById(R.id.button_t7);
-        mButtonT8 = view.findViewById(R.id.button_t8);
-        mButtonT9 = view.findViewById(R.id.button_t9);
+        mButtons[0][0] = view.findViewById(R.id.button_t1);
+        mButtons[0][1] = view.findViewById(R.id.button_t2);
+        mButtons[0][2] = view.findViewById(R.id.button_t3);
+        mButtons[1][0] = view.findViewById(R.id.button_t4);
+        mButtons[1][1] = view.findViewById(R.id.button_t5);
+        mButtons[1][2] = view.findViewById(R.id.button_t6);
+        mButtons[2][0] = view.findViewById(R.id.button_t7);
+        mButtons[2][1] = view.findViewById(R.id.button_t8);
+        mButtons[2][2] = view.findViewById(R.id.button_t9);
         mFrametLayoutTic = view.findViewById(R.id.frame_layout_tic);
     }
 
@@ -99,24 +123,17 @@ public class TicTacToeFragment extends Fragment {
         public void onClick(View v) {
             int x = mIndex / 3;
             int y = mIndex % 3;
+            Log.d("bashir",""+x);
+            Log.d("bashir",""+y);
             Sign turn = mTicTacToe.getTurn();
-            if(mTicTacToe.isGameFinished()){
+            if (mTicTacToe.isGameFinished()) {
                 reset();
                 return;
             }
             if (mTicTacToe.checkIsAddable(x, y)) {
                 mTicTacToe.enterPosition(x, y);
                 Button button = (Button) v;
-                switch (turn) {
-                    case O:
-                        button.setText("O");
-                        break;
-                    case X:
-                        button.setText("X");
-                        break;
-                    default:
-                        break;
-                }
+                fillButtons(button,turn);
                 Status status = mTicTacToe.getStatus();
                 if (status != null) {
                     switch (status) {
@@ -137,19 +154,16 @@ public class TicTacToeFragment extends Fragment {
     }
 
     private void setOnClickListeners() {
-        mButtonT1.setOnClickListener(new myListener(0));
-        mButtonT2.setOnClickListener(new myListener(1));
-        mButtonT3.setOnClickListener(new myListener(2));
-        mButtonT4.setOnClickListener(new myListener(3));
-        mButtonT5.setOnClickListener(new myListener(4));
-        mButtonT6.setOnClickListener(new myListener(5));
-        mButtonT7.setOnClickListener(new myListener(6));
-        mButtonT8.setOnClickListener(new myListener(7));
-        mButtonT9.setOnClickListener(new myListener(8));
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int index = i * 3 + j;
+                mButtons[i][j].setOnClickListener(new myListener(index));
+            }
+        }
     }
 
     private void startSnackbar(String winner) {
-        Snackbar.make(mFrametLayoutTic, winner , Snackbar.LENGTH_LONG)
+        Snackbar.make(mFrametLayoutTic, winner, Snackbar.LENGTH_LONG)
                 .setAction("Reset", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -162,14 +176,10 @@ public class TicTacToeFragment extends Fragment {
 
     private void reset() {
         mTicTacToe = new TicTacToe();
-        mButtonT1.setText("");
-        mButtonT2.setText("");
-        mButtonT3.setText("");
-        mButtonT4.setText("");
-        mButtonT5.setText("");
-        mButtonT6.setText("");
-        mButtonT7.setText("");
-        mButtonT8.setText("");
-        mButtonT9.setText("");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                mButtons[i][j].setText("");
+            }
+        }
     }
 }

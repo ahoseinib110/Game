@@ -2,14 +2,19 @@ package org.maktab.game.model.fourinarow;
 
 import android.util.Log;
 
+import java.io.Serializable;
 
 
-public class FourInARow {
+public class FourInARow implements Serializable {
     private int mRowSize ;
     private ButtonColor[][] plate ;
     private ButtonColor turn = ButtonColor.RED;
     private StatusColor statusColor ;
     private int filled = 0;
+
+    public ButtonColor[][] getPlate() {
+        return plate;
+    }
 
     public StatusColor getStatusColor() {
         return statusColor;
@@ -130,13 +135,13 @@ public class FourInARow {
             }
         }
 
-        for (int i = mRowSize-1; i >mRowSize-2 ; i--) {
-            for (int j = mRowSize-1; j >mRowSize-2 ; j--) {
+        for (int i = 0; i <2 ; i++) {
+            for (int j = mRowSize-1; j >mRowSize-3 ; j--) {
                 //horizontal
                 if (!plate[i][j].equals(ButtonColor.GRAY)) {
                     boolean flag =true;
                     for (int k = 0; k <3 ; k++) {
-                            if (!plate[i-k][j-k].equals(plate[i-k-1][j-k-1])) {
+                            if (!plate[i+k][j-k].equals(plate[i+k+1][j-k-1])) {
                                 flag = false;
                                 break;
                             }

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame_layout_four"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#84C636"
-    android:orientation="vertical"
-    tools:context=".controller.fragment.FourInARowFragment">
+    android:background="#84C636">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/text_view_four"
         android:layout_width="wrap_content"
@@ -18,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/game_4_in_a_row"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,13 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="100dp"
-        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,47 +34,46 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_f21"
                 style="Widget.AppCompat.Button.Colored"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f22"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f23"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f24"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f25"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
@@ -90,45 +81,45 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_f16"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f17"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f18"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f19"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f20"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
@@ -136,45 +127,45 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_f11"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f12"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f13"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f14"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f15"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
@@ -182,45 +173,45 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_f6"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f7"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f8"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f9"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f10"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
@@ -228,49 +219,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_f1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
 
             <Button
                 android:id="@+id/button_f5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@color/gray" />
         </LinearLayout>
     </LinearLayout>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

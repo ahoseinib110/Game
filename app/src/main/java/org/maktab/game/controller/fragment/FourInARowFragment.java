@@ -3,6 +3,7 @@ package org.maktab.game.controller.fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -27,6 +28,8 @@ import org.maktab.game.model.fourinarow.StatusColor;
 public class FourInARowFragment extends Fragment {
 
     public static final String TAG = "bashir";
+    public static final String ARG_FOUR_IN_A_ROW = "FourInARow";
+    public static final String ARG_BUTTONS = "ARG_Buttons";
     FourInARow mFourInARow;
     int mRowSize;
     Button[][] mButtons;
@@ -53,13 +56,18 @@ public class FourInARowFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
         mRowSize = 5;
+        if(savedInstanceState ==null){
+            mFourInARow = new FourInARow(5);
+        }
         mButtons = new Button[mRowSize][mRowSize];
-        mFourInARow = new FourInARow(5);
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(ARG_FOUR_IN_A_ROW,mFourInARow);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +76,15 @@ public class FourInARowFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_four_in_a_row, container, false);
         findViews(view);
         setOnClickListeners();
+        if(savedInstanceState != null){
+            mFourInARow = (FourInARow) savedInstanceState.getSerializable(ARG_FOUR_IN_A_ROW);
+            ButtonColor[][] plate = mFourInARow.getPlate();
+            for (int i = 0; i <mRowSize ; i++) {
+                for (int j = 0; j <mRowSize ; j++) {
+                    colorButton(mButtons[i][j], plate[i][j]);
+                }
+            }
+        }
         return view;
     }
 
@@ -119,16 +136,7 @@ public class FourInARowFragment extends Fragment {
             if (mFourInARow.checkIsAddable(mIndex1, mIndex2)) {
                 mFourInARow.enterPosition(mIndex1, mIndex2);
                 Button button = (Button) v;
-                switch (turn) {
-                    case RED:
-                        button.setBackgroundColor(getResources().getColor(R.color.red));
-                        break;
-                    case BLUE:
-                        button.setBackgroundColor(getResources().getColor(R.color.blue));
-                        break;
-                    default:
-                        break;
-                }
+                colorButton(button,turn);
                 StatusColor statusColor = mFourInARow.getStatusColor();
                 if (statusColor != null) {
                     switch (statusColor) {
@@ -144,6 +152,19 @@ public class FourInARowFragment extends Fragment {
                     }
                 }
             }
+        }
+    }
+
+    private void colorButton(Button button, ButtonColor turn) {
+        switch (turn) {
+            case RED:
+                button.setBackgroundColor(getResources().getColor(R.color.red));
+                break;
+            case BLUE:
+                button.setBackgroundColor(getResources().getColor(R.color.blue));
+                break;
+            default:
+                break;
         }
     }
 
