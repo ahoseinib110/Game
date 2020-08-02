@@ -163,7 +163,7 @@ public class TicTacToeFragment extends Fragment {
     }
 
     private void startSnackbar(String winner) {
-        Snackbar.make(mFrametLayoutTic, winner, Snackbar.LENGTH_LONG)
+        Snackbar.make(this.getView(), winner, Snackbar.LENGTH_LONG)
                 .setAction("Reset", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
